@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Leave Application Processing System</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/main.css}" />
+</head>
+<body>
+<div class="topbar" th:fragment="topbar">
+<ul class="topbar">
+	<li class="topbar">Leave Application Processing System</li>
+	<li class="topbar" th:utext="'Name: ' + ${staff.name}">Staff Name</li>
+	<li class="topbar" th:utext="'Role: ' + ${staff.role}">Staff Role</li>
+	<li class="logout"><a class="logout" href="/logout/staff" th:href="@{/logout/staff}">Logout</a></li>
+</ul>
+
+<div class="sidebar" th:fragment="sidebar">
+<ul class="sidebar">
+	<li class="sidebar">Staff</li>
+	<li th:class="${page.equals('vplh') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/vplh/list}">View Personal Leave History</a></li>
+	<li th:class="${page.equals('mla') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mla/leaveform}">Create Leave Application</a></li>
+	<li th:class="${page.equals('mr') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/movement/current}">Movement Register</a></li>
+	<li class="sidebar" th:if="${staff.role.equals('Manager')}">Manager</li>
+	<li th:class="${page.equals('vafa') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/vafa/list}" th:if="${staff.role.equals('Manager')}">View Application For Approval</a></li>
+	<li th:class="${page.equals('velh') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/velh/list}" th:if="${staff.role.equals('Manager')}">View Employee Leave History</a></li>
+	<li th:class="${page.equals('rpv') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/rpv}" th:if="${staff.role.equals('Manager')}">Generate Report</a></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

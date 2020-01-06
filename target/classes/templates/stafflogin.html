@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:utext="#{StaffLogin}">Staff Login</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/loginmain :: topbar">
+</div>
+<div th:replace="/fragments/loginmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Staff Login</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+<form class="login" th:action="@{${action}}" method="post">
+  <table class="logintable">
+ 	 <tr class="logintr">
+  		<td class="logintd">Username</td>
+  		<td class="logintd"><input type="text" name="username"/>
+  		</td>
+  	</tr>
+  	<tr class="logintr">
+  	  	<td class="logintd" th:utext="#{Password}">Password</td>
+  		<td class="logintd"><input type="password" name="password"/></td>
+  	</tr>
+  	<tr class="logintr">
+  		<td class="logintd"></td>
+  		<td class="logintd">
+  			<input type="submit" value="Submit" th:value="'Submit'"/>
+  		</td>
+  	</tr>
+  </table>
+</form>
+</div>
+</body>
+
+</html>

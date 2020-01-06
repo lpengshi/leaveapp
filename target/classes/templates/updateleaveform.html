@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Apply Leave</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/staffmain :: topbar">
+</div>
+<div th:replace="/fragments/staffmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Apply Leave</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+
+
+ <form class="createform" th:object = "${editleaveform}" th:action="@{'/vplh/'+${leaveId}+'/update'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Leave Type</th>
+      	<td class="detailview"><select th:field="*{leaveTypeId}" >             
+                           <option 
+                            th:value="${leavetype.Id}"
+                            th:utext="${leavetype.leaveTypeName}"/>
+                  	</select>
+         </td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Start Date</th>
+      	<td class="detailview"> <input type="date" th:field="*{startDate}" >
+      	<p class="errMsg" th:if=  "${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></p>
+         </td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">End Date</th>
+      	<td class="detailview"> <input type="date" th:field="*{endDate}" >
+      	<p class="errMsg" th:if=  "${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></p>
+         </td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Reason</th>
+      	<td class="detailview"> <textarea rows="3" cols="50" placeholder="Enter reason for leave" th:field="*{reason}" ></textarea>
+      	<p class="errMsg" th:if=  "${#fields.hasErrors('reason')}" th:errors="*{reason}"></p>
+         </td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Work Dissemination</th>
+      	<td class="detailview"> <input type="text" th:field="*{handover}" >
+      	<p class="errMsg" th:if = "${#fields.hasErrors('handover')}" th:errors = "*{handover}"></p>
+         </td>
+      </tr>
+       <tr class="detailview">
+      	<th class="detailview">Contact (if going overseas)</th>
+      	<td class="detailview"> <input type="text" th:field="*{contactNo}" >
+      	<p class="errMsg" th:if=  "${#fields.hasErrors('contactNo')}" th:errors="*{contactNo}"></p>
+         </td>
+      </tr>
+      <tr class="detailview">
+      <th class="detailview" >Submit Leave</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit" th:value="'Submit'">Submit Leave</button>
+  		</td>
+      </tr>
+    </table>
+    </form>
+ 
+</div>
+</div>
+
+</body>
+</html>

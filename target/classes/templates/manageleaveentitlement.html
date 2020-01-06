@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Manage Leave Entitlement</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">Manage Leave Entitlement</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+    <table class="viewtable">
+      <tr class="viewtable">
+        <th class="viewtable">LEAVE ENTITLEMENT ID</th>
+        <th class="viewtable">LEAVE TYPE</th>
+        <th class="viewtable">ROLE</th>
+        <th class="viewtable">ENTITLED DAYS</th>
+      </tr>
+      <tr th:each="lEnt : ${lEntlist}" class="viewtable">
+        <td th:inline="text" class="viewtable"><a href="/mlt/updateleaveentitlement" th:href="@{'/mle/' + ${lEnt.entitlement.id} + '/updateleaveentitlement'
+        }">[[${lEnt.entitlement.id}]]</a></td>
+        <td th:text="${lEnt.leaveType.leaveTypeName}" class="viewtable">Leave Type Name</td>
+        <td th:text="${lEnt.entitlement.role}" class="viewtable">Role</td>
+        <td th:text="${lEnt.entitlement.entitledDays}" class="viewtable">Entitled Days</td>
+      </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

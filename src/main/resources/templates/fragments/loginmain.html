@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:utext="#{LeaveApplicationProcessingSystem}">Leave Application Processing System</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div class="topbar" th:fragment="topbar">
+<ul class="topbar">
+	<li class="topbar">Leave Application Processing System</li>
+</ul>
+</div>
+<div class="sidebar" th:fragment="sidebar">
+<ul class="sidebar">
+	<li class="sidebar">Login</li>
+	<li th:class="${page.equals('isSL') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/stafflogin}">Staff Login</a></li>
+	<li th:class="${page.equals('isAL') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/adminlogin}">Admin Login</a></li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Personal Leave History</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/staffmain :: topbar">
+</div>
+<div th:replace="/fragments/staffmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff" th:utext="${staff.name +'''s Leave History'}">View Personal Leave History</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+    <table class="viewtable">
+      <tr class="viewtable">
+        <th class="viewtable">LEAVE ID</th>
+        <th class="viewtable">LEAVE TYPE</th>
+        <th class="viewtable">START DATE</th>
+        <th class="viewtable">END DATE</th>
+        <th class="viewtable">STATUS</th>
+      </tr>
+      <tr th:each="leaRec : ${staffleaverecord}" class="viewtable">
+        <td th:inline="text" class="viewtable"><a href="/ms/staffId" th:href="@{'/vplh/' + ${leaRec.leaveId} + '/view'
+        }">[[${leaRec.leaveId}]]</a></td>
+        <td th:utext="${leaRec.leaveType.leaveTypeName}" class="viewtable">Leave Type</td>
+        <td th:utext="${#temporals.format(leaRec.startDate, 'dd-MMM-yyyy')}" class="viewtable">Start Date</td>
+        <td th:utext="${#temporals.format(leaRec.endDate, 'dd-MMM-yyyy')}" class="viewtable">End Date</td>
+        <td th:utext="${leaRec.status}" class="viewtable">Status</td>
+      </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

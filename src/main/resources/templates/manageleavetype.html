@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Manage Leave Type</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">Manage Leave Type</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+    <table class="viewtable">
+      <tr class="viewtable">
+        <th class="viewtable">LEAVE TYPE ID</th>
+        <th class="viewtable">NAME</th>
+      </tr>
+      <tr th:each="leaType : ${typelist}" class="viewtable">
+        <td th:inline="text" class="viewtable"><a href="/mlt/updateleavetype" th:href="@{'/mlt/' + ${leaType.id} + '/updateleavetype'
+        }">[[${leaType.id}]]</a></td>
+        <td th:text="${leaType.leaveTypeName}" class="viewtable">Name</td>
+      </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

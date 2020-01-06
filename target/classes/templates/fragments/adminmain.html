@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Leave Application Processing System</title>
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div class="topbar" th:fragment="topbar">
+<ul class="topbar">
+	<li class="topbar">Leave Application Processing System</li>
+	<li class="topbar" th:utext="'Name: ' + ${staff.name}">Staff Name</li>
+	<li class="topbar" th:utext="${'Role: ' + staff.role}">Staff Role</li>
+	<li class="logout"><a class="logout" href="/logout/admin" th:href="@{/logout/admin}">Logout</a></li>
+</ul>
+</div>
+
+<div class="sidebar" th:fragment="sidebar">
+<ul class="sidebar">
+	<li class="sidebar">Staff Matters</li>
+		<li th:class="${page.equals('ms') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/ms/list}">Manage Staff</a></li>
+	<li th:class="${page.equals('mscs') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/ms/createstaff}">Create Staff</a></li>
+	<li th:class="${page.equals('mah') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mah/list}">Manage Approval Hierarchy</a></li>
+	<li class="sidebar">Leave Matters</li>
+	<li th:class="${page.equals('mlb') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mlb/list}">Manage Leave Balance</a></li>
+	<li th:class="${page.equals('mlbclb') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mlb/createleavebalance}">Create Leave Balance</a></li>
+	<li th:class="${page.equals('mlt') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mlt/list}">Manage Leave Type</a></li>
+	<li th:class="${page.equals('mltclt') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mlt/createleavetype}">Create Leave Type</a></li>
+	<li th:class="${page.equals('mle') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mle/list}">Manage Leave Entitlement</a></li>
+	<li th:class="${page.equals('mlecle') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mle/createleaveentitlement}">Create Leave Entitlement</a></li>
+	<li th:class="${page.equals('mh') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mh/list}">Manage Holiday</a></li>
+	<li th:class="${page.equals('mhch') ? 'navlinkactive' : 'navlink'}"><a th:href="@{/mh/createholiday}">Create Holiday</a></li>
+</ul>
+</div>
+</body>
+</html>

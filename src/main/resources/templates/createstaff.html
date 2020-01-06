@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Create Staff</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Create Staff</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+
+ <form class="createform" th:object="${stf}" th:action="@{'/ms/createstaff'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Username</th>
+      	<td class="detailview"><input type="text" size="50" th:field="*{username}"></td>
+      	<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+      </tr>
+      <tr class="detailview">
+     	<th class="detailview">Password</th>
+      	<td class="detailview"><input type="text" size="50"  th:field="*{password}"></td>
+      	<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Name</th>
+      	<td class="detailview"><input type="text" size="50"  th:field="*{name}"></td>
+      	<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Email</th>
+      	<td class="detailview"><input type="text" size="50" th:field="*{email}"></td>
+      	<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Role</th>
+      	<td class="detailview"><select th:field="*{role}">
+      	<option th:value="'Admin'">Admin</option>
+      	<option th:value="'Employee'">Employee</option>
+      	<option th:value="'Manager'">Manager</option>
+      	</select>
+      	</td>
+      	<td th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Report To</th>
+      	<td class="detailview"><select th:field="*{reportTo}">
+      	<option th:each="mgr : ${mgrList}" th:value="${mgr.staffId}" th:utext="${mgr.name}"></option>
+      	</select>
+      	</td>
+      	<td th:if="${#fields.hasErrors('reportTo')}" th:errors="*{reportTo}"></td>
+      </tr>
+      <tr>
+      <th class="detailview" >Create</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit" name="process" th:value="'Create Staff'">Create Staff</button>
+  			<button class="detailview" type="submit" name="process" th:value="'Cancel Changes'">Cancel Changes</button>
+  		</td>
+      </tr>
+    </table>
+    </form>
+   
+</div>
+</div>
+
+</body>
+</html>

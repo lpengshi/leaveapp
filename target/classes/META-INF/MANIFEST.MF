@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: lapsproj
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Peng
+Implementation-Vendor-Id: sg.edu.iss
+Build-Jdk: 1.8.0_221
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/lapsproj
+Created-By: Maven Integration for Eclipse
+

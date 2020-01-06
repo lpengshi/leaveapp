@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Staff Leave Application</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/staffmain :: topbar">
+</div>
+<div th:replace="/fragments/staffmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">View Staff Leave Application</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+    <table class="viewtable">
+      <tr class="viewtable">
+        <th class="viewtable">STAFF NAME</th>
+        <th class="viewtable">VIEW LEAVE</th>
+      </tr>
+      <tr th:each="stf : ${myStaffList}" class="viewtable"> 
+        <td th:utext="${stf.name}" class="viewtable">Staff Name</td>
+        <td class="viewtable"><a href="/velh/staffId/list" th:href="@{'/velh/' + ${stf.staffId} + '/list'}" th:utext="${'View ' + stf.name + '''s Leave History'}">View Staff Leave</a></td>
+      </tr>
+      <tr class="viewtable">
+      	<td class="viewtable">Subordinate Leave History</td>
+      	<td class="viewtable"><a href="/velh/mystaff/list" th:href="@{'/velh/mystaff/list'}" th:utext="'View My Staff Leave History'">View All</a></td>
+      </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

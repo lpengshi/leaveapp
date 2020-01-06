@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Something went wrong...</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/loginmain :: topbar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Something went wrong...</h1>
+	
+	<div class="currentviewinmessage" th:utext="${message}"></div>
+	<p><a href="/stafflogin" th:ref="@{'/stafflogin'}">Please click here to return to login page</a></p>
+</div>
+
+<div class="viewtable">
+
+
+</div>
+</div>
+
+</body>
+</html>

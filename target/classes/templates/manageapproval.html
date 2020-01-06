@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Manage Role and Approval</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">Manage Role and Approval</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+    <table class="viewtable">
+      <tr class="viewtable">
+        <th class="viewtable">STAFF ID</th>
+        <th class="viewtable">NAME</th>
+        <th class="viewtable">ROLE</th>
+        <th class="viewtable">REPORT TO</th>
+      </tr>
+      <tr th:each="emp : ${emplist}" class="viewtable">
+        <td th:inline="text" class="viewtable"><a href="/mah/staffId" th:href="@{'/mah/' + ${emp.staff.staffId} + '/updateapproval'
+        }">[[${emp.staff.staffId}]]</a></td>
+        <td th:text="${emp.staff.name}" class="viewtable">Name</td>
+        <td th:text="${emp.staff.role}" class="viewtable">Role</td>
+        <td th:text="${emp.manager.name}" class="viewtable">Report To</td>
+      </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

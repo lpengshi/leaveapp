@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Leave Application Details</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/staffmain :: topbar">
+</div>
+<div th:replace="/fragments/staffmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 th:utext="'View Leave Details'">View Leave Application Details</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="currentview2" th:if="${overlapPresent.equals('true')}">
+    <table class="viewtable">
+    <caption>Overlapping Leave Detected</caption>
+      <tr class="viewtable">
+        <th class="viewtable">LEAVE ID</th>
+        <th class="viewtable">STAFF NAME</th>
+        <th class="viewtable">LEAVE TYPE</th>
+        <th class="viewtable">START DATE</th>
+        <th class="viewtable">END DATE</th>
+        <th class="viewtable">STATUS</th>
+      </tr>
+      <tr th:each="leaRec : ${overlaplist}" class="viewtable">
+        <td th:inline="text" class="viewtable"><a href="/velh/leaveId/view" th:href="@{'/velh/' + ${leaRec.leaveId} + '/view'}">[[${leaRec.leaveId}]]</a></td>
+        <td class="viewtable" th:utext="${leaRec.staff.name}" >Staff Name</td>
+        <td class="viewtable" th:utext="${leaRec.leaveType.leaveTypeName}">Leave Type</td>
+        <td class="viewtable" th:utext="${#temporals.format(leaRec.startDate, 'dd-MMM-yyyy')}">Start Date</td>
+        <td class="viewtable" th:utext="${#temporals.format(leaRec.endDate, 'dd-MMM-yyyy')}">End Date</td>
+        <td class="viewtable" th:utext="${leaRec.status}">Status</td>
+      </tr>
+    </table>
+</div>
+
+<div class="viewtable">
+<form class="manageform" action="/vafa/leaveId/process" th:action="@{'/vafa/' + ${leave.leaveId} + '/process'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Leave ID</th>
+      	<td class="detailview" th:utext="${leave.leaveId}"></td>
+      </tr>
+       <tr class="detailview">
+      	<th class="detailview">Staff Name</th>
+      	<td class="detailview" th:utext="${leave.staff.name}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Leave Type</th>
+      	<td class="detailview" th:utext="${leave.leaveType.leaveTypeName}"></td>
+      </tr>
+      <tr class="detailview">
+		<th class="detailview">Start Date</th>
+		<td class="detailview" th:utext="${#temporals.format(leave.startDate, 'dd-MMM-yyyy')}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">End Date</th>
+		<td class="detailview" th:utext="${#temporals.format(leave.endDate, 'dd-MMM-yyyy')}"></td>
+      </tr>
+      <tr class="detailview">
+		<th class="detailview">No of Days</th>
+		<td class="detailview" th:utext="${leave.duration}"></td>
+	  </tr>
+      <tr class="detailview">
+		<th class="detailview">Reason</th>
+		<td class="detailview" th:utext="${leave.reason}"></td>
+	  </tr>
+	  <tr class="detailview">
+		<th class="detailview">Work Dissemination</th>
+		<td class="detailview" th:utext="${leave.handover}"></td>
+	  </tr>
+	  <tr class="detailview">
+		<th class="detailview">Contact No</th>
+		<td class="detailview" th:utext="${leave.contactNo}"></td>
+      </tr>
+      <tr class="detailview">
+		<th class="detailview">Remark</th>
+		<td class="detailview"><textarea name="remark" rows="3" cols="50" placeholder="Enter reason for approve / reject"></textarea>
+		<p class="errMsg" th:utext="${errMsg}"></p>
+		</td>
+      </tr>
+      <tr class="detailview">
+		<th class="detailview">Status</th>
+		<td class="detailview" th:utext="${leave.status}"></td>
+      </tr>
+      <tr>
+		<th class="detailview">Update</th>
+		<td class="detailview"> 
+			<button type="submit" name="decision" th:value="Approve" th:utext="Approve"></button>
+  			<button type="submit" name="decision" th:value="Reject" th:utext="Reject"></button>
+			<a href="/vafa/list" th:href="@{'/vafa/list'}"><button th:utext="'Back'"></button></a>
+		</td>
+	  </tr>
+	</table>
+	</form>
+</div>
+</div>
+
+</body>
+</html>

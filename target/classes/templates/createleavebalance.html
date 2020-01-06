@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Create Leave Balance</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Create Leave Balance</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+
+ <form class="createform" th:object="${lb}" th:action="@{'/mlb/createleavebalance'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Staff Name</th>
+      	<td class="detailview"><select th:field="*{staffId}">
+      	<option th:each="stf : ${staffList}"  th:value="${stf.staffId}"  th:utext="${stf.name}">Staff Name</option>
+      	</select></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Leave Type</th>
+      	<td class="detailview"><select th:field="*{leaveTypeId}">
+      	<option th:each="leaType: ${ltList}"  th:value="${leaType.id}"  th:utext="${leaType.leaveTypeName}">Leave Type Name</option>
+      	</select>
+      	</td>
+      </tr>
+      <tr class="detailview">
+      <th class="detailview" >Create</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit" name="process" th:value="'Create Leave Balance'">Create Leave Balance</button>
+  			<button class="detailview" type="submit" name="process" th:value="'Cancel Changes'">Cancel Changes</button>
+  		</td>
+      </tr>
+    </table>
+    </form>
+   
+</div>
+</div>
+
+</body>
+</html>

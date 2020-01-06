@@ -1,0 +1,219 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+a.button {
+	margin-right: 40px;
+	text-decoration: none;
+}
+
+a.logout {
+	text-decoration: none;
+	color: white;
+}
+
+div.currentview{
+	margin-top: 50px;
+	margin-left: 275px;
+	width: 1250px;
+    display: inline-block;
+    text-align: center;
+}
+
+div.currentviewinmessage{
+	color: red;
+}
+
+div.loginheader{
+	width: 100%;
+	padding: 10px;
+}
+
+div.currentviewheader{
+	width: 100%;
+	padding: 10px;
+}
+
+div.loginmessage{
+	justify-content: center;
+	width: 100%;
+	margin: 0;
+	padding: 5px;
+	color: red;
+}
+
+div.topbar {
+	background-color: #333;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	height: 50px;
+	width: 1525px;
+}
+
+div.sidebar {
+	margin-top: 50px;
+	position: fixed;
+	padding: 0;
+	width: 275px;
+	height: 100%;
+	left: 0;
+	background-color: #f1f1f1;
+}
+
+div.viewheader {
+	font-weight: bold;
+}
+
+div.viewtable {
+	margin-top: 20px;
+	text-align: left;
+	justify-content: center;
+	display: flex;
+}
+
+.errors {
+	color: red;
+}
+
+form.createform {
+	justify-content: center;
+	display: flex;
+}
+
+form.manageform {
+	justify-content: center;
+	display: flex;
+}
+
+form.login{
+	margin-top: 10px;
+	justify-content: center;
+	display: flex;
+}
+
+li.topbar {
+	float: left;
+	color: white;
+	font-weight: bold;
+	font-size: 30px;
+	padding: 8px 15px;
+}
+
+li {
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+li.button{
+	float: left;
+}
+
+li.sidebar{
+	font-size: 25px;
+	background-color: #CFDAE3;
+	font-weight: bold;
+}
+
+li.navlink a{
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+li.navlinkactive a {
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+	text-decoration: none;
+	background-color: #555;
+	color: white;
+}
+
+li.navlink a:hover {
+	background-color: #555;
+	color: white;
+}
+
+li.logout {
+    background-color: #6F93B3;
+	font-weight: bold;
+	float: right;
+    display: block;
+    padding: 10px;
+    font-size: 30px;    
+}
+
+.errMsg {
+	color:red;
+	padding-top: 10px;
+	margin: 0;
+}
+
+table.viewtable{
+	margin: 0 auto;
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
+
+table.detailview{
+	align-self: center;
+	border: 1px solid #000;
+	width: 80%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+table.generatereportbar{
+	border-spacing: 10px;
+}
+
+td.detailview{
+	padding: 15px;
+	border: 1px solid #000;
+	background-color: #f1f1f1
+}
+
+td.logintd{
+	padding-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 30px;
+}
+
+td.viewtable{
+	text-align: center;
+	padding: 15px;
+	border: 1px solid #000;
+	background-color: #f1f1f1
+}
+
+th.detailview{
+	white-space: nowrap;
+	background-color: #CFDAE3;
+	padding: 15px;
+	border: 1px solid #000;
+}
+
+th.viewtable{
+	text-align: center;
+	background-color: #CFDAE3;
+	padding: 15px;
+	border: 1px solid #000;
+}
+
+ul.sidebar {
+	margin: 0;
+	padding: 0;
+}
+
+ul.topbar {
+	margin: 0;
+	padding: 0;
+}
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Movement Register</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/staffmain :: topbar">
+</div>
+<div th:replace="/fragments/staffmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">View Movement Register</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+<div>
+	<span>Select Month</span> <select id="selectMonth">
+	<option th:each="m : ${monthList}" th:value="${m}" th:text="${m}" th:selected="${m} == ${month}"></option>
+	</select>
+	<h3 th:if="${#lists.isEmpty(leaveRecord)}">No Leaves Available</h3>
+</div>
+<div class="viewtable">
+<table class="viewtable" th:if="${not #lists.isEmpty(leaveRecord)}">
+	<tr class="viewtable">
+		<th class="viewtable">Staff Name</th>
+		<th class="viewtable">Leave Type</th>
+		<th class="viewtable">Start Date</th>
+		<th class="viewtable">End Date</th>
+	</tr>
+		<tr class="viewtable" th:each="leave : ${leaveRecord}">
+		<td class="viewtable" th:text="${leave.staff.name}">Name</td>
+		<td class="viewtable" th:text="${leave.leaveType.leaveTypeName}">Leave Type</td>
+		<td class="viewtable" th:text="${#temporals.format(leave.startDate, 'dd-MMM-yyyy')}">Start Date</td>
+		<td class="viewtable" th:text="${#temporals.format(leave.endDate, 'dd-MMM-yyyy')}">End Date</td>
+	</tr>
+</table>
+</div>
+</div>
+
+	<script>
+	$("#selectMonth").change(function(){
+		var url = $(this).val();
+		if(url){
+			window.location.href = url;
+		}
+	})
+
+	</script>
+</body>
+</html>

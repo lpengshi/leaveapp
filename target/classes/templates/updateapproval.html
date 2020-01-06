@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Role and Approval</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Update Role and Approval</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+
+ <form class="manageform" th:action="@{'/mah/' + ${emp.staff.staffId} + '/updateapproval'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Name</th>
+      	<td class="detailview" th:utext="${emp.staff.name}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Role</th>
+      	<td class="detailview"><select name="role">
+      	<option th:selected="${emp.staff.role.equals('Admin')}" th:value="'Admin'"  th:utext="'Admin'">Admin</option>
+      	<option th:selected="${emp.staff.role.equals('Employee')}"  th:value="'Employee'" th:utext="'Employee'">Employee</option>
+      	<option th:selected="${emp.staff.role.equals('Manager')}" th:value="'Manager'" th:utext="'Manager'">Manager</option>
+      	</select>
+      	</td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Report To</th>
+      	<td class="detailview"><select name="reportTo">
+		<option th:each="mgr : ${mgrList}" th:selected="${emp.manager.staffId.equals(mgr.staffId)}" th:value="${mgr.staffId}" th:utext="${mgr.name}"></option>
+      	</select>
+      </tr>
+      <tr>
+      <th class="detailview" >Update</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit" name="process" th:value="'Save Changes'">Save Changes</button>
+  			<button class="detailview" type="submit" name="process" th:value="'Cancel Changes'">Cancel Changes</button>
+  		</td>
+      </tr>
+    </table>
+    </form>
+   
+</div>
+</div>
+
+</body>
+</html>

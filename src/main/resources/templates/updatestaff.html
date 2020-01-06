@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Staff</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Update Staff</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+
+ <form class="manageform" th:action="@{'/ms/' + ${stf.staffId} + '/updatestaff'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Username</th>
+      	<td class="detailview"><input type="text" name="username" size="50" th:value="${stf.username}"></td>
+      </tr>
+      <tr class="detailview">
+     	<th class="detailview">Password</th>
+      	<td class="detailview"><input type="text" name="password" size="50" th:value="${stf.password}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Name</th>
+      	<td class="detailview"><input type="text" name="name" size="50" th:value="${stf.name}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Email</th>
+      	<td class="detailview"><input type="text" name="email" size="50"  th:value="${stf.email}"></td>
+      </tr>
+      <tr>
+      <th class="detailview" >Update</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit" name="process" th:value="'Save Changes'">Save Changes</button>
+  			<button class="detailview" type="submit" name="process" th:value="'Cancel Changes'">Cancel Changes</button>
+  			<button class="detailview" type="submit" name="process" th:value="'Delete Staff'">Delete Staff</button>
+  		</td>
+      </tr>
+    </table>
+    </form>
+   
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Create Holiday</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1>Create Holiday</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+<div class="viewtable">
+
+ <form class="createform" th:object="${hol}" th:action="@{'/mh/createholiday'}" method="post">
+    <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Description</th>
+      	<td class="detailview"><input type="text" size="50" th:field="*{description}"></td>
+      </tr>
+      <tr class="detailview">
+      	<th class="detailview">Holiday Date</th>
+      	<td class="detailview"><input type="date" th:field="*{holidayDate}"></td>
+      </tr>
+      <tr class="detailview">
+      <th class="detailview" >Create</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit" name="process" th:value="'Create Holiday'">Create Holiday</button>
+  			<button class="detailview" type="submit" name="process" th:value="'Cancel Changes'">Cancel Changes</button>
+  		</td>
+      </tr>
+    </table>
+    </form>
+   
+</div>
+</div>
+
+</body>
+</html>

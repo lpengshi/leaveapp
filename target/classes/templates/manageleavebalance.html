@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Manage Leave Balance</title>
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+<div th:replace="/fragments/adminmain :: topbar">
+</div>
+<div th:replace="/fragments/adminmain :: sidebar">
+</div>
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">Manage Leave Balance</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+
+
+<div class="viewtable">
+<form class="createform" th:action="@{'/mlb/manageleavebalance'}" method="post">
+    <table class="viewtable">
+      <tr class="viewtable">
+      	<th class="viewtable">LEAVE BALANCE ID</th>
+        <th class="viewtable">STAFF NAME</th>
+        <th class="viewtable">LEAVE TYPE</th>
+        <th class="viewtable">BALANCE</th>
+      </tr>
+      <tr th:each="leaBal : ${leaBalList}" class="viewtable">
+      	<td th:inline="text" class="viewtable"><a href="/mlb/leaBalId/updateleavebalance" th:href="@{'/mlb/' + ${leaBal.id} + '/updateleavebalance'
+        }">[[${leaBal.id}]]</a></td>
+        <td th:text="${leaBal.staff.name}" class="viewtable">Staff Name</td>
+        <td th:text="${leaBal.leaveType.leaveTypeName}" class="viewtable">Leave Type</td>
+        <td th:text="${leaBal.balance}" class="viewtable">Leave Balance</td>
+      </tr>
+    </table>
+</form>
+</div>
+<div class="viewtable">
+   <form class="manageform" th:action="@{'/mlb/refreshleavebalance'}" method="post">
+      <table class="detailview">
+      <tr class="detailview">
+      	<th class="detailview">Refresh Leave Balance</th>
+      	<td class="detailview">All staff annual and medical leave balance will be reset as per staff entitlement</td>
+      <tr class="detailview">
+      	<th class="detailview">Staff Password</th>
+      	<td class="detailview"><input type="password" name="password"></td>
+      </tr>
+      <tr class="detailview">
+        <th class="detailview" >Confirmation (Warning: This is irreversible!)</th>
+        <td class="detailview">
+        	<button class="detailview" type="submit">Refresh Leave Balance</button>
+  		</td>
+      </tr>
+    </table>
+   </form>
+</div>
+</div>
+</body>
+</html>

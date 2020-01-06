@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Report View</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/laps.css" th:href="@{/css/laps.css}" />
+</head>
+<body>
+	<div th:replace="/fragments/staffmain :: topbar"></div>
+	<div th:replace="/fragments/staffmain :: sidebar"></div>
+	
+<div class="currentview">
+<div class="viewheader">
+	<h1 class="managestaff">Generate Report (Search Time Period)</h1>
+	<div class="currentviewinmessage" th:utext="${msg}"></div>
+</div>
+		<div  class="viewtable">
+		<form action="/rpv/fetch" method="post" name="form" onsubmit="return checkDate()">
+		<table class="generatereportbar">
+		<tr>
+			<td>From: </td>
+			<td> <input th:attr="value=${startDate}" type="date" name="startDate"></td>
+			<td>To: </td>
+			<td><input th:attr="value=${endDate}" type="date" name="endDate"></td>
+			<td><select name="choice"><option th:each="c: ${choicelist}" th:value="${c}" th:utext="${c}" th:selected="${c} == ${choice}">Leave Type Name</option>
+			</select></td>
+			<td><input type="submit" name="exportOrDisplay" value="Search"></td>
+			<td><input type="submit" name="exportOrDisplay" value="Export"></td>
+		</tr>
+		</table>
+		</form>
+		</div>
+		<table class="viewtable">
+			<tr class="viewtable">
+				<th class="viewtable">LEAVE ID</th>
+				<th class="viewtable">STAFF NAME</th>
+				<th class="viewtable">LEAVE TYPE</th>
+				<th class="viewtable">START DATE</th>
+				<th class="viewtable">END DATE</th>
+				<th class="viewtable">REASON</th>
+			</tr>
+		
+			<tr th:each="leaRec : ${list}" class="viewtable">
+				<td th:utext="${leaRec.leaveId}" class="viewtable">Leave Id</td>
+				<td th:utext="${leaRec.staff.name}" class="viewtable">Staff
+					Name</td>
+				<td th:utext="${leaRec.leaveType.leaveTypeName}" class="viewtable">Leave
+					Type</td>
+				<td th:utext="${#temporals.format(leaRec.startDate, 'dd-MMM-yyyy')}"
+					class="viewtable">Start Date</td>
+				<td th:utext="${#temporals.format(leaRec.endDate, 'dd-MMM-yyyy')}"
+					class="viewtable">End Date</td>
+				<td th:utext="${leaRec.reason}" class="viewtable">Reason</td>
+			</tr>
+			<tr th:if="${!errMsg.equals('')}" class = "viewtable">
+				<td colspan=6 th:text="${errMsg}" class = "viewtable">error message : no records
+					found</td>
+			</tr>
+			
+		</table>
+	</div>
+	
+<script>
+function checkDate() {
+  var x = document.forms["form"]["startDate"].value;
+  var y = document.forms["form"]["endDate"].value;
+  if (x > y) {
+    alert("End date cannot be before start date! ");
+    return false;
+  }
+}
+</script>
+</body>
+</html>
